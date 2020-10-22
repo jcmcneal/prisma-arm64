@@ -15,9 +15,9 @@ FROM jaywizard/prisma-arm64 as prisma-builder
 ```dockerfile
 FROM node:14.13.1-buster as builder
 
-COPY --from=prisma-build /prisma-arm64 /prisma-arm64
+COPY --from=prisma-builder /prisma-arm64 /prisma-arm64
 
-# Use provided .env file
+# Use provided .env file (copy it wherever you need to)
 COPY /prisma-arm64/.env ./prisma/.env
 
 # Verify .env file is being used
