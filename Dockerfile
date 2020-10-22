@@ -17,8 +17,10 @@ COPY --from=prisma-build /prisma-engines/target/release/migration-engine /prisma
 COPY --from=prisma-build /prisma-engines/target/release/introspection-engine /prisma-arm64/introspection-engine
 COPY --from=prisma-build /prisma-engines/target/release/prisma-fmt /prisma-arm64/prisma-fmt
 
-COPY .env /prisma-arm64/
+COPY .env /prisma-arm64/.env
 
-RUN chmod +x prisma-arm64/*
+RUN chmod +x /prisma-arm64/*
+
+RUN ls -la /prisma-arm64
 
 CMD tail -f /dev/null
