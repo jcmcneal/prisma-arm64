@@ -5,7 +5,7 @@ RUN dpkg -i direnv.deb
 
 RUN git clone https://github.com/prisma/prisma-engines.git
 
-WORKDIR prisma-engines
+WORKDIR /prisma-engines
 
 RUN direnv allow
 RUN cargo build --release
