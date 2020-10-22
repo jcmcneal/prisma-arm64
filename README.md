@@ -1,11 +1,13 @@
 ### Prisma Binaries for arm64
-This is a temporary solution for building custom binaries for arm64. As of now I've only verified this works on debian images. On alpine images it has issues due to the lack of glibc package.
+This is a temporary solution for building custom binaries for arm64.
+
+**As of now I've only verified this works on debian images. On alpine images it has issues due to the lack of glibc package.**
 
 The location of the binaries are in: `/prisma-arm64`
 The `.env` file is also located at `/prisma-arm64/.env`
 
 #### Use it as a FROM base image
-```
+```dockerfile
 FROM jaywizard/prisma-arm64 as prisma-builder
 ```
 
