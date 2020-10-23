@@ -27,13 +27,19 @@ jobs:
       #   run: echo ${{ steps.buildx.outputs.platforms }}
       -
         name: Build arm64
-        run: |
-            docker build \
-            --build-arg ARCH=aarch64
-            --tag jaywizard/prisma-arm:latest .
+        id: docker_build_arm64
+        uses: docker/build-push-action@v2
+        with:
+          push: false
+          tags: jaywizard/prisma-arm:latest
+          build-args: |
+            ARCH=aarch64
       -
         name: Build arm32v7
-        run: |
-            docker build \
-            --build-arg ARCH=armhf
-            --tag jaywizard/prisma-arm:latest .
+        id: docker_build_arm32v7
+        uses: docker/build-push-action@v2
+        with:
+          push: false
+          tags: jaywizard/prisma-arm:latest
+          build-args: |
+            ARCH=armhf
