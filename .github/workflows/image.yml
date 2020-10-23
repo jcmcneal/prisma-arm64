@@ -16,7 +16,7 @@ jobs:
         with:
           version: latest
       - name: build the image
-      run: |
-        docker buildx build \
-          --tag jaywizard/prisma-arm:latest \
-          --platform linux/amd64,linux/arm/v7 .
+        run: |
+            docker buildx build \
+            --tag jaywizard/prisma-arm:latest \
+            --platform linux/amd64,linux/arm/v7 .
