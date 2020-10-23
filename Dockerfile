@@ -1,3 +1,5 @@
+ARG ARCH=aarch64
+
 FROM rust:latest as prisma-build
 
 RUN apt-get update && apt-get install direnv
@@ -7,7 +9,10 @@ RUN git clone https://github.com/prisma/prisma-engines.git
 WORKDIR /prisma-engines
 
 RUN direnv allow
-RUN cargo build --release
+# RUN cargo build --release
+
+RUN cargo install cross
+RUN cross build --release --target ${ARCH}-unknown-linux-gnu
 
 FROM node:14.13.1-buster as builder
 
