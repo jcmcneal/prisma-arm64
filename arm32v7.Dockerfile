@@ -1,21 +1,16 @@
 FROM rust:latest as prisma-build
 
-RUN apt-get update
-RUN apt-get install -qq direnv \
-    gcc-arm-linux-gnueabihf
-RUN rustup target add armv7-unknown-linux-gnueabihf
-
-# Step 3: Configure cargo for cross compilation
-RUN mkdir -p ~/.cargo
-RUN echo '[target.armv7-unknown-linux-gnueabihf]' >> ~/.cargo/config
-RUN echo 'linker = "arm-linux-gnueabihf-gcc"' >> ~/.cargo/config
+RUN apt-get update && apt-get install direnv
 
 RUN git clone https://github.com/prisma/prisma-engines.git
 
 WORKDIR /prisma-engines
 
 RUN direnv allow
-RUN cargo build --release --target=armv7-unknown-linux-gnueabihf
+# RUN cargo build --release
+
+RUN cargo install cross
+RUN cross build --release --target armv7-unknown-linux-gnueabihf
 
 FROM node:14.13.1-buster as builder
 

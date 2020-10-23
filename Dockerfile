@@ -1,5 +1,3 @@
-ARG ARCH=aarch64
-
 FROM rust:latest as prisma-build
 
 RUN apt-get update && apt-get install direnv
@@ -12,7 +10,7 @@ RUN direnv allow
 # RUN cargo build --release
 
 RUN cargo install cross
-RUN cross build --release --target ${ARCH}-unknown-linux-gnu
+RUN cross build --release --target aarch64-unknown-linux-gnu
 
 FROM node:14.13.1-buster as builder
 

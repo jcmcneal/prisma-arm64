@@ -30,16 +30,14 @@ jobs:
         id: docker_build_arm64
         uses: docker/build-push-action@v2
         with:
+          file: ./Dockerfile
           push: false
           tags: jaywizard/prisma-arm:latest
-          build-args: |
-            ARCH=aarch64
       -
         name: Build arm32v7
         id: docker_build_arm32v7
         uses: docker/build-push-action@v2
         with:
+          file: ./arm32v7.Dockerfile
           push: false
           tags: jaywizard/prisma-arm:latest
-          build-args: |
-            ARCH=armhf
