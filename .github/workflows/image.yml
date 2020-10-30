@@ -2,7 +2,7 @@ name: build arm images
 
 on:
   push:
-    branches: arm
+    branches: build
 
 jobs:
   build:
@@ -32,7 +32,8 @@ jobs:
         name: Build arm64
         run: |
           docker buildx build \
-          --tag jaywizard/prisma-arm:latest \
+          --tag jaywizard/prisma-arm64:${latest} \
+          --tag jaywizard/prisma-arm64:${TAG} \
           --platform linux/arm64 .
       # -
       #   name: Build arm64
@@ -41,7 +42,7 @@ jobs:
       #   with:
       #     file: ./Dockerfile
       #     push: false
-      #     tags: jaywizard/prisma-arm:latest
+      #     tags: jaywizard/prisma-arm64:latest
       # -
       #   name: Build arm32v7
       #   id: docker_build_arm32v7
@@ -49,4 +50,4 @@ jobs:
       #   with:
       #     file: ./arm32v7.Dockerfile
       #     push: false
-      #     tags: jaywizard/prisma-arm:latest
+      #     tags: jaywizard/prisma-arm64:latest
