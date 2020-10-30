@@ -1,5 +1,5 @@
-### Prisma Binaries for arm
-This is a temporary solution for building custom binaries for arm.
+### Prisma Binaries for arm64
+This is a temporary solution for building custom binaries for arm64.
 
 **As of now I've only verified this works on debian images. On alpine images it has issues due to the lack of glibc package.**
 
@@ -43,4 +43,4 @@ RUN yarn prisma -v
 RUN yarn prisma generate
 ```
 
-Hopefully the prisma team will officially support arm one day. If this image needs updated, please open a GH issue or create a PR.
+Hopefully the prisma team will officially support arm64 one day. If this image needs updated, please open a GH issue or create a PR.
