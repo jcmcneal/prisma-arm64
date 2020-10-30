@@ -1,13 +1,23 @@
 FROM rust:latest as prisma-build
 
-RUN curl http://launchpadlibrarian.net/358480279/direnv_2.15.0-1_arm64.deb -o direnv.deb
-RUN dpkg -i direnv.deb
+RUN cat /etc/*release
+
+RUN apt-get update
+RUN apt-get install -y direnv openssl
+# RUN apt-get install -qy gcc-aarch64-linux-gnu
 
 RUN git clone https://github.com/prisma/prisma-engines.git
 
 WORKDIR /prisma-engines
 
 RUN direnv allow
+
+# RUN rustup target add aarch64-unknown-linux-gnu
+# RUN rustup toolchain install stable-aarch64-unknown-linux-gnu
+
+# ENV OPENSSL_INCLUDE_DIR=/usr/include/openssl
+# ENV OPENSSL_LIB_DIR=/usr/lib/ssl
+# RUN cargo build --release --target aarch64-unknown-linux-gnu
 RUN cargo build --release
 
 FROM node:14.13.1-buster as builder
